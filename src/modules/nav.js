@@ -1,9 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { RecipeContext } from "../recipeListContext";
 
 const Nav = () => {
   const { recipes, setRecipeList } = useContext(RecipeContext);
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    console.log(recipes);
+  }, [recipes]);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -11,8 +15,10 @@ const Nav = () => {
       "https://forkify-api.herokuapp.com/api/v2/recipes/?search=" + search
     );
     const data = await res.json();
+    console.log("ESTA ES LA DATA DEL JSON");
+    console.log(data);
+    console.log("Y ESTE EL VALOR DE RECIPES");
     setRecipeList(data.data.recipes);
-    console.log(recipes);
   };
   return (
     <nav className="nav">
