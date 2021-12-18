@@ -14,7 +14,7 @@ const RecipeList = (props) => {
     const data = await res.json();
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
     let recipe = data.data.recipe;
-    //console.log(recipe);
+    console.log(recipe);
     setRecipeV(recipe);
     //console.log("sucede? id" + id);
   };

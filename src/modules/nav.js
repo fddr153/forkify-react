@@ -17,10 +17,6 @@ const Nav = () => {
       );
       const data = await res.json();
       if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-      console.log("ESTA ES LA DATA DEL JSON");
-      console.log(data);
-      console.log("Y ESTE EL VALOR DE RECIPES");
       setRecipeList(data.data.recipes);
     } catch (e) {
       throw e;
