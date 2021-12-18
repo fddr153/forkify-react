@@ -14,9 +14,7 @@ const RecipeList = (props) => {
     const data = await res.json();
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
     let recipe = data.data.recipe;
-    console.log(recipe);
     setRecipeV(recipe);
-    //console.log("sucede? id" + id);
   };
   return (
     <div className="recipeList">
@@ -25,7 +23,7 @@ const RecipeList = (props) => {
         href={"#" + props.value.id}
         onClick={handleCLick}
       >
-        <div class="preview_maindiv">
+        <div className={"preview_maindiv preview_maindiv_normal"}>
           <figure class="preview__fig">
             <img
               src={props.value.image_url}

@@ -5,7 +5,6 @@ import { Fade } from "react-awesome-reveal";
 
 const Dashboard = () => {
   const { recipes, setRecipeList } = useContext(RecipeContext);
-
   return (
     <div className="dashboard invisible-scrollbar">
       <Fade>
