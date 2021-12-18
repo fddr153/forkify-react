@@ -2,6 +2,8 @@ import "./App.css";
 import Nav from "./modules/nav";
 import { useState } from "react";
 import { RecipeContext } from "./recipeListContext.js";
+import { RecipeElContext } from "./recipeContext.js";
+
 import Dashboard from "./modules/dashboard";
 import Recipe from "./modules/recipe";
 import { Fade } from "react-awesome-reveal";
@@ -13,6 +15,7 @@ import { Fade } from "react-awesome-reveal";
 //           - recipeView on fade animation
 function App() {
   const [recipes, setRecipeList] = useState([]);
+  const [recipeV, setRecipeV] = useState({});
 
   return (
     <Fade>
@@ -21,8 +24,10 @@ function App() {
           <RecipeContext.Provider value={{ recipes, setRecipeList }}>
             <Nav />
             <div className="container">
-              <Dashboard />
-              <Recipe />
+              <RecipeElContext.Provider value={{ recipeV, setRecipeV }}>
+                <Dashboard />
+                <Recipe />
+              </RecipeElContext.Provider>
             </div>
           </RecipeContext.Provider>
         </div>

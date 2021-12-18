@@ -1,7 +1,30 @@
+import { RecipeElContext } from "../recipeContext.js";
+import { useContext } from "react";
+
 const RecipeList = (props) => {
+  const { recipeV, setRecipeV } = useContext(RecipeElContext);
+
+  const handleCLick = async function (e) {
+    e.preventDefault();
+    const id = props.value.id;
+    if (!id) return;
+    const res = await fetch(
+      "https://forkify-api.herokuapp.com/api/v2/recipes/" + id
+    );
+    const data = await res.json();
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+    let recipe = data.data.recipe;
+    //console.log(recipe);
+    setRecipeV(recipe);
+    //console.log("sucede? id" + id);
+  };
   return (
     <div className="recipeList">
-      <a class="preview__link preview__link" href={"#" + props.value.id}>
+      <a
+        class="preview__link preview__link"
+        href={"#" + props.value.id}
+        onClick={handleCLick}
+      >
         <div class="preview_maindiv">
           <figure class="preview__fig">
             <img

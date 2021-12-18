@@ -26,12 +26,9 @@ a {
     rgba(255, 255, 255, 0.7),
     rgba(255, 255, 255, 0.3)
   );
-  width: 100%;
   border-radius: 2rem;
-
   display: flex;
   flex-direction: column;
-  width: 80%;
 
   overflow: hidden;
 }
@@ -40,7 +37,7 @@ a {
   z-index: 2;
   flex: 1;
   background: rgba(255, 255, 255, 0.5);
-  min-height: 5vh;
+  min-height: 10vh;
   max-height: 10vh;
   width: 100%;
   border-radius: 2rem;
@@ -51,17 +48,17 @@ a {
   position: relative;
 }
 .container {
-  flex: 8;
+  flex: 4;
   display: flex;
-  position: fixed;
+  position: relative;
   width: 100%;
 }
 .dashboard {
   flex: 2;
-  margin-top: 10vh;
   position: relative;
   height: 80vh;
   max-width: 450px;
+  min-width: 300px;
   flex-direction: column;
   background-image: linear-gradient(
     rgba(255, 255, 255, 0),
@@ -123,7 +120,79 @@ a {
 .recipe {
   flex: 5;
   display: flex;
+  flex-direction: column;
   position: relative;
+  height: 80vh;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.recipe_top_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.recipe__fig {
+  display: flex;
+  flex: 1;
+  width: 50vh;
+  height: fit-content;
+}
+.recipe__details {
+  display: flex;
+  flex: 4;
+  flex-direction: column;
+}
+.recipe__info {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  width: 100;
+  justify-content: space-evenly;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255) 10%,
+    rgb(255, 255, 255) 90%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.recipe__title {
+  margin-top: 2%;
+  position: relative;
+  transform: translate(13%, 20%) skewY(-2deg);
+  color: #fff;
+  font-weight: 700;
+  font-size: 2rem;
+  text-transform: uppercase;
+  width: 80%;
+  line-height: 1;
+  text-align: center;
+}
+.highlight {
+  position: relative;
+}
+
+.highlight::after {
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.7;
+  transform: scale(1.07, 1.05) skewX(-15deg);
+  background-image: linear-gradient(to top left, #ff7300, #bd4804);
+}
+.recipe__img {
+  width: 50vh;
+  height: 50vh;
+  image-rendering: crisp-edges;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 1rem;
 }
 .header__logo {
   height: 40px;
