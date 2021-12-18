@@ -1,27 +1,22 @@
-import { useContext, useState } from "react";
-
-const recipeList = () => {
+const RecipeList = (props) => {
   return (
     <div className="recipeList">
-      {recipes.map((recipe) => {
-        <li class="preview">
-          <a class="preview__link preview__link" href={recipe.id}>
-            <figure class="preview__fig">
-              <img src={recipe.img} alt={recipe.title} />
-            </figure>
-            <div class="preview__data">
-              <h4 class="preview__title">{recipe.title}</h4>
-              <p class="preview__publisher">{recipe.publisher}</p>
-              <div class="preview__user-generated">
-                <svg>
-                  <use href="src/img/icons.svg#icon-user"></use>
-                </svg>
-              </div>
-            </div>
-          </a>
-        </li>;
-      })}
+      <a class="preview__link preview__link" href={"#" + props.value.id}>
+        <div class="preview_maindiv">
+          <figure class="preview__fig">
+            <img
+              src={props.value.image_url}
+              alt={props.value.title}
+              height="100%"
+            />
+          </figure>
+          <div class="preview__data">
+            <h4 class="preview__title">{props.value.title}</h4>
+            <p class="preview__publisher">{props.value.publisher}</p>
+          </div>
+        </div>
+      </a>
     </div>
   );
 };
-export default recipeList;
+export default RecipeList;

@@ -1,7 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto";
+}
+a {
+  text-decoration: none; /* no underline */
 }
 .App {
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
@@ -20,12 +26,19 @@
     rgba(255, 255, 255, 0.7),
     rgba(255, 255, 255, 0.3)
   );
+  width: 100%;
   border-radius: 2rem;
-  z-index: 2;
-  backdrop-filter: blur(2rem);
+
   display: flex;
+  flex-direction: column;
+  width: 80%;
+
+  overflow: hidden;
 }
+
 .nav {
+  z-index: 2;
+  flex: 1;
   background: rgba(255, 255, 255, 0.5);
   min-height: 5vh;
   max-height: 10vh;
@@ -35,6 +48,81 @@
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
+  position: relative;
+}
+.container {
+  flex: 8;
+  display: flex;
+  position: fixed;
+  width: 100%;
+}
+.dashboard {
+  flex: 2;
+  margin-top: 10vh;
+  position: relative;
+  height: 80vh;
+  max-width: 450px;
+  flex-direction: column;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.801)
+  );
+  overflow-y: auto;
+}
+
+.invisible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.preview_maindiv {
+  margin-top: 8px;
+  display: flex;
+  position: relative;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.801)
+  );
+}
+.preview_maindiv:last-child {
+  margin-bottom: 15px;
+}
+
+.preview__fig {
+  margin-left: 10px;
+  height: 80px;
+  box-sizing: border-box;
+  align-content: center;
+  justify-content: center;
+  border-radius: 1rem;
+  overflow: hidden;
+  flex: 1;
+  align-items: center;
+}
+.preview__data {
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #d6512c;
+  font-size-adjust: inherit;
+  flex: 4;
+  padding: 4px;
+  height: fit-content;
+  width: fit-content;
+  justify-content: center;
+}
+.preview_maindiv:hover {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 135, 98, 0),
+    rgba(255, 180, 157, 0.507)
+  );
+}
+.preview__title {
+  text-transform: uppercase;
+}
+.recipe {
+  flex: 5;
+  display: flex;
   position: relative;
 }
 .header__logo {

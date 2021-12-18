@@ -1,24 +1,30 @@
 import { useContext, useState, useEffect } from "react";
+import reactDom from "react-dom";
+import { useDebugValue } from "react/cjs/react.production.min";
 import { RecipeContext } from "../recipeListContext";
 
 const Nav = () => {
+  //VARIABLES DE CONTEXTO
   const { recipes, setRecipeList } = useContext(RecipeContext);
+  //VARIABLES DE ESTADO LOCAL
   const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    console.log(recipes);
-  }, [recipes]);
-
+  //useEffect(console.log(recipes), recipes);
   const handleClick = async (e) => {
     e.preventDefault();
-    const res = await fetch(
-      "https://forkify-api.herokuapp.com/api/v2/recipes/?search=" + search
-    );
-    const data = await res.json();
-    console.log("ESTA ES LA DATA DEL JSON");
-    console.log(data);
-    console.log("Y ESTE EL VALOR DE RECIPES");
-    setRecipeList(data.data.recipes);
+    try {
+      const res = await fetch(
+        "https://forkify-api.herokuapp.com/api/v2/recipes/?search=" + search
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+      console.log("ESTA ES LA DATA DEL JSON");
+      console.log(data);
+      console.log("Y ESTE EL VALOR DE RECIPES");
+      setRecipeList(data.data.recipes);
+    } catch (e) {
+      throw e;
+    }
   };
   return (
     <nav className="nav">

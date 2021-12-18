@@ -2,6 +2,9 @@ import "./App.css";
 import Nav from "./modules/nav";
 import { useState } from "react";
 import { RecipeContext } from "./recipeListContext.js";
+import Dashboard from "./modules/dashboard";
+import Recipe from "./modules/recipe";
+import { Fade } from "react-awesome-reveal";
 
 //import { useState, useEffect } from "react";
 //body container fixed NO-SCROLL
@@ -12,15 +15,19 @@ function App() {
   const [recipes, setRecipeList] = useState([]);
 
   return (
-    <div className="App">
-      <body className="glass">
-        <RecipeContext.Provider value={{ recipes, setRecipeList }}>
-          <Nav />
-        </RecipeContext.Provider>
-
-        <div className="container"></div>
-      </body>
-    </div>
+    <Fade>
+      <div className="App">
+        <div className="glass">
+          <RecipeContext.Provider value={{ recipes, setRecipeList }}>
+            <Nav />
+            <div className="container">
+              <Dashboard />
+              <Recipe />
+            </div>
+          </RecipeContext.Provider>
+        </div>
+      </div>
+    </Fade>
   );
 }
 
