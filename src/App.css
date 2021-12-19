@@ -235,8 +235,11 @@ a {
   padding: 7px 0px;
   width: 250px;
 }
-.search {
+.nav_to_right {
   position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   right: 5%;
 }
 .recipe__ingredient-list {
@@ -268,4 +271,90 @@ a {
   text-align: center;
   opacity: 0.7;
   background-image: linear-gradient(to top left, #ff7300, #bd4804);
+}
+.nav__item {
+  position: relative;
+  list-style-type: none;
+  opacity: 1;
+  display: block;
+}
+
+.nav__btn {
+  height: 100%;
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 1.5rem;
+  transition: all 0.3s;
+  display: block;
+  align-items: center;
+}
+.nav__btn:focus {
+  outline: none;
+}
+
+.nav__btn:hover {
+  color: #e4643d;
+}
+.bookmark_recipe_btn_normal {
+  margin-top: 10%;
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 1.5rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+.bookmark_recipe_btn:focus {
+  outline: none;
+}
+
+.bookmark_recipe_btn:hover {
+  color: #e4643d;
+}
+.bookmark_recipe_btn_marked {
+  margin-top: 10%;
+  font-family: inherit;
+  color: #e4643d;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 1.5rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+.bookmark_recipe_btn_marked:focus {
+  outline: none;
+}
+
+.bookmark_recipe_btn_marked:hover {
+  color: #000000;
+}
+.bookmarks__list {
+  visibility: hidden;
+  display: block;
+  border-radius: 1rem;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #000;
+}
+.nav__item:hover .bookmarks__list {
+  visibility: visible;
 }

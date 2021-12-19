@@ -1,8 +1,10 @@
-import { RecipeElContext } from "../recipeContext.js";
+import { RecipeContext } from "../myContext";
 import { useContext } from "react";
 
 const RecipeList = (props) => {
-  const { recipeV, setRecipeV } = useContext(RecipeElContext);
+  const { value2, value3 } = useContext(RecipeContext);
+  const [recipeV, setRecipeV] = value2;
+  const [bookmarks, setBookmarks] = value3;
 
   const handleCLick = async function (e) {
     e.preventDefault();
@@ -14,6 +16,8 @@ const RecipeList = (props) => {
     const data = await res.json();
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
     let recipe = data.data.recipe;
+    let index = bookmarks.findIndex((el) => el.id === id);
+    index >= 0 ? (recipe.bookmarked = true) : (recipe.bookmarked = false);
     setRecipeV(recipe);
   };
   return (

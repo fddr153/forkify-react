@@ -1,10 +1,12 @@
 import RecipeList from "./recipeList";
-import { RecipeContext } from "../recipeListContext.js";
+import { RecipeContext } from "../myContext.js";
 import { useContext, useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
 
 const Dashboard = () => {
-  const { recipes, setRecipeList } = useContext(RecipeContext);
+  const { value1 } = useContext(RecipeContext);
+  const [recipes, setRecipeList] = value1;
+  if (!recipes) return <div></div>;
   return (
     <div className="dashboard invisible-scrollbar">
       <Fade>

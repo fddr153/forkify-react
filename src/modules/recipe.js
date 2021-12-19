@@ -1,18 +1,40 @@
 import { useState } from "react";
 import Fraction from "fractional";
-import { RecipeElContext } from "../recipeContext.js";
+import { RecipeContext } from "../myContext";
 import { FaEnvira } from "react-icons/fa";
 import { useContext } from "react/cjs/react.development";
 import { Fragment } from "react";
+import { GiBookmarklet } from "react-icons/gi";
 
 const Recipe = () => {
-  const { recipeV, setRecipeV } = useContext(RecipeElContext);
+  const [changeBM, reloadBM] = useState();
+  const { value2, value3 } = useContext(RecipeContext);
+  const [recipeV, setRecipeV] = value2;
+  const [bookmarks, setBookmarks] = value3;
+  if (!recipeV?.id) return <div className="recipe"></div>;
   const id = recipeV.id;
   const ingredientes = recipeV.ingredients;
   const space = <Fragment>&nbsp;&nbsp;</Fragment>;
-
-  if (!id) return <div className="recipe"></div>;
-
+  //revisar si esta bookmarked
+  const manageBookmarks = function (e) {
+    e.preventDefault();
+    if (!recipeV.bookmarked && bookmarks.length >= 5) {
+      alert("Solo se pueden agregar hasta 5 Bookmarks");
+      return;
+    }
+    if (!recipeV.bookmarked) {
+      recipeV.bookmarked = true;
+      bookmarks.push(recipeV);
+      setBookmarks(bookmarks);
+    } else {
+      recipeV.bookmarked = false;
+      const index = bookmarks.findIndex((el) => el.id === recipeV.id);
+      bookmarks.splice(index, 1);
+      setBookmarks(bookmarks);
+    }
+    setRecipeV(recipeV);
+    reloadBM(bookmarks.length);
+  };
   return (
     <div className="recipe invisible-scrollbar">
       <div className="recipe_top_container">
@@ -28,6 +50,16 @@ const Recipe = () => {
               Ingredients for: {recipeV.servings} servings
             </span>
           </div>
+          <button
+            className={
+              "bookmark_recipe_btn_" +
+              (recipeV.bookmarked ? "marked" : "normal")
+            }
+            onClick={manageBookmarks}
+          >
+            <GiBookmarklet />
+            <span>{recipeV.bookmarked ? "Bookmarked" : "Add Bookmark"}</span>
+          </button>
         </div>
         <figure class="recipe__fig">
           <img
